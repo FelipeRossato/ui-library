@@ -48,6 +48,7 @@ class UIButton extends HTMLElement {
       <style>
         * {
           box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
           margin: 0;
           padding: 0;
         }
@@ -61,7 +62,6 @@ class UIButton extends HTMLElement {
           color: white;
           cursor: pointer;
           display: flex;
-          font-family: 'Poppins', sans-serif;
           font-size: 14px;
           font-weight: 600;
           gap: 6px;
