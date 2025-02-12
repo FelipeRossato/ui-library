@@ -16,6 +16,7 @@ class UIDropdown extends HTMLElement {
   connectedCallback() {
     this.shadowRoot?.querySelector('select')?.addEventListener('change', (event) => {
       const selectedValue = (event.target as HTMLSelectElement).value;
+      
       this.dispatchEvent(new CustomEvent('change', {
         detail: { value: selectedValue },
         bubbles: true,
@@ -24,7 +25,6 @@ class UIDropdown extends HTMLElement {
     });
   }
   
-
   attributeChangedCallback() {
     this.render();
   }

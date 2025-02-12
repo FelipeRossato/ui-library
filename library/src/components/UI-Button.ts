@@ -10,14 +10,26 @@ class UIButton extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.preloadFont().then(() => this.render());
-  }
-
-  connectedCallback() {
-    this.shadowRoot?.querySelector('button')?.addEventListener('click', () => {
-      this.dispatchEvent(new Event('custom-click'));
+    this.preloadFont().then(() => {
+      this.render();
+      
+      this.addListener();
     });
   }
+
+  addListener() {
+    const button = this.shadowRoot?.querySelector('button');
+    
+    button?.addEventListener('click', (event) => {
+      const selectedValue = (event.target as HTMLButtonElement).innerText;
+      
+      this.dispatchEvent(new CustomEvent('custom-click', {
+        detail: { value: selectedValue },
+        bubbles: true,
+        composed: true
+      }));
+    });
+  } 
 
   attributeChangedCallback() {
     this.render();
