@@ -1,36 +1,44 @@
 class UIDropdown extends HTMLElement {
-  static observedAttributes = ['label', 'options', 'selected', 'border-color', 'disabled'];
+  static observedAttributes = [
+    "label",
+    "options",
+    "selected",
+    "border-color",
+    "disabled",
+  ];
 
   constructor() {
     super();
 
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
 
     this.render();
   }
 
   addListener() {
-    const select = this.shadowRoot?.querySelector('select');
+    const select = this.shadowRoot?.querySelector("select");
 
-    select?.addEventListener('change', (event) => {      
-      this.dispatchEvent(new CustomEvent('dropdown-change', {
-        bubbles: true,
-        detail: { value: (event.target as HTMLSelectElement).value },
-      }));
+    select?.addEventListener("change", (event) => {
+      this.dispatchEvent(
+        new CustomEvent("dropdown-change", {
+          bubbles: true,
+          detail: { value: (event.target as HTMLSelectElement).value },
+        }),
+      );
     });
   }
-  
+
   attributeChangedCallback() {
     this.render();
   }
 
   render() {
-    const label = this.getAttribute('label') || 'Select an option';
-    const options = JSON.parse(this.getAttribute('options') || '[]');
-    const selected = this.getAttribute('selected') || '';
-    const borderColor = this.getAttribute('border-color');
-    const disabled = this.getAttribute('disabled') === 'true';
-  
+    const label = this.getAttribute("label") || "Select an option";
+    const options = JSON.parse(this.getAttribute("options") || "[]");
+    const selected = this.getAttribute("selected") || "";
+    const borderColor = this.getAttribute("border-color");
+    const disabled = this.getAttribute("disabled") === "true";
+
     this.shadowRoot!.innerHTML = `
       <style>
         * {
@@ -112,16 +120,16 @@ class UIDropdown extends HTMLElement {
   
       <div class="dropdown-container">
         <label for="dropdown-field">${label}</label>
-        <select id="dropdown-field" ${disabled ? 'disabled' : ''}>
-          ${options.map((opt: string) => `<option value="${opt}" ${opt === selected ? 'selected' : ''}>${opt}</option>`).join('')}
+        <select id="dropdown-field" ${disabled ? "disabled" : ""}>
+          ${options.map((opt: string) => `<option value="${opt}" ${opt === selected ? "selected" : ""}>${opt}</option>`).join("")}
         </select>
       </div>
     `;
 
     this.addListener();
-  }    
+  }
 }
 
-customElements.define('ui-dropdown', UIDropdown);
+customElements.define("ui-dropdown", UIDropdown);
 
 export default UIDropdown;

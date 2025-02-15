@@ -1,25 +1,34 @@
 class UIInputField extends HTMLElement {
-  static observedAttributes = ['label', 'placeholder', 'value', 'type', 'border-color', 'disabled'];
+  static observedAttributes = [
+    "label",
+    "placeholder",
+    "value",
+    "type",
+    "border-color",
+    "disabled",
+  ];
 
   constructor() {
     super();
-    
-    this.attachShadow({ mode: 'open' });
-    
+
+    this.attachShadow({ mode: "open" });
+
     this.render();
   }
 
   addListener() {
-    const input = this.shadowRoot?.querySelector('input');
+    const input = this.shadowRoot?.querySelector("input");
 
-    input?.addEventListener('input', () => {
-      this.dispatchEvent(new CustomEvent('inputfield-change', {
-        bubbles: true,
-        detail: {
-          value: input?.value
-        }
-      }));
-    })
+    input?.addEventListener("input", () => {
+      this.dispatchEvent(
+        new CustomEvent("inputfield-change", {
+          bubbles: true,
+          detail: {
+            value: input?.value,
+          },
+        }),
+      );
+    });
   }
 
   attributeChangedCallback() {
@@ -27,12 +36,12 @@ class UIInputField extends HTMLElement {
   }
 
   render() {
-    const placeholder = this.getAttribute('placeholder') || 'Enter text';
-    const value = this.getAttribute('value') || '';
-    const type = this.getAttribute('type') || 'text';
-    const borderColor = this.getAttribute('border-color');
-    const disabled = this.getAttribute('disabled') === 'true';
-    const label = this.getAttribute('label') || 'Input Field';
+    const placeholder = this.getAttribute("placeholder") || "Enter text";
+    const value = this.getAttribute("value") || "";
+    const type = this.getAttribute("type") || "text";
+    const borderColor = this.getAttribute("border-color");
+    const disabled = this.getAttribute("disabled") === "true";
+    const label = this.getAttribute("label") || "Input Field";
 
     this.shadowRoot!.innerHTML = `
       <style>
@@ -86,7 +95,7 @@ class UIInputField extends HTMLElement {
 
       <div class="input-container">
         <label for="input-field">${label}</label>
-        <input id="input-field" type="${type}" placeholder="${placeholder}" value="${value}" ${disabled ? 'disabled' : ''} />
+        <input id="input-field" type="${type}" placeholder="${placeholder}" value="${value}" ${disabled ? "disabled" : ""} />
       </div>
     `;
 
@@ -94,6 +103,6 @@ class UIInputField extends HTMLElement {
   }
 }
 
-customElements.define('ui-inputfield', UIInputField);
+customElements.define("ui-inputfield", UIInputField);
 
 export default UIInputField;

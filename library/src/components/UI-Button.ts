@@ -1,51 +1,56 @@
 class UIButton extends HTMLElement {
-  static observedAttributes = ['icon', 'label', 'color'];
+  static observedAttributes = ["icon", "label", "color"];
 
   constructor() {
     super();
-    
-    this.attachShadow({ mode: 'open' });
-    
+
+    this.attachShadow({ mode: "open" });
+
     this.preloadFont().then(() => {
-      this.render();      
+      this.render();
     });
   }
 
   addListener() {
-    const button = this.shadowRoot?.querySelector('button');
-    
-    button?.addEventListener('click', () => {      
-      this.dispatchEvent(new CustomEvent('button-click', {
-        bubbles: true,
-        composed: true
-      }));
+    const button = this.shadowRoot?.querySelector("button");
+
+    button?.addEventListener("click", () => {
+      this.dispatchEvent(
+        new CustomEvent("button-click", {
+          bubbles: true,
+          composed: true,
+        }),
+      );
     });
-  } 
+  }
 
   attributeChangedCallback() {
     this.render();
   }
 
   async preloadFont() {
-    let link: HTMLLinkElement | null = document.querySelector("#material-icons-font");
+    let link: HTMLLinkElement | null = document.querySelector(
+      "#material-icons-font",
+    );
 
     if (!link) {
-      link = document.createElement('link');
+      link = document.createElement("link");
       link.id = "material-icons-font";
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined';
+      link.rel = "stylesheet";
+      link.href =
+        "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined";
       document.head.appendChild(link);
     }
-    
+
     return new Promise<void>((resolve) => {
       link!.onload = () => resolve();
     });
   }
 
   render() {
-    const icon = this.getAttribute('icon') || 'add';
-    const label = this.getAttribute('label') || 'Adicionar';
-    const color = this.getAttribute('color');
+    const icon = this.getAttribute("icon") || "add";
+    const label = this.getAttribute("label") || "Adicionar";
+    const color = this.getAttribute("color");
 
     this.shadowRoot!.innerHTML = `
       <style>
@@ -95,6 +100,6 @@ class UIButton extends HTMLElement {
   }
 }
 
-customElements.define('ui-button', UIButton);
+customElements.define("ui-button", UIButton);
 
 export default UIButton;

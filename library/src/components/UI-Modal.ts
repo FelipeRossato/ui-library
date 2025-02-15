@@ -1,26 +1,25 @@
 class UIModal extends HTMLElement {
-  static observedAttributes = ['open', 'title', 'message', 'color'];
+  static observedAttributes = ["open", "title", "message", "color"];
 
   constructor() {
     super();
 
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
 
     this.render();
   }
 
   addListener() {
-    const closeButton = this.shadowRoot!.querySelector('.close-button');
-    const confirmButton = this.shadowRoot!.querySelector('.confirm-button');
+    const closeButton = this.shadowRoot!.querySelector(".close-button");
+    const confirmButton = this.shadowRoot!.querySelector(".confirm-button");
 
-    closeButton?.addEventListener('click', () => {
+    closeButton?.addEventListener("click", () => {
       this.close();
     });
 
-    confirmButton?.addEventListener('click', () => {
+    confirmButton?.addEventListener("click", () => {
       this.close();
     });
-
   }
 
   attributeChangedCallback() {
@@ -28,26 +27,26 @@ class UIModal extends HTMLElement {
   }
 
   open() {
-    const dialog = this.shadowRoot!.querySelector('dialog');
-    
+    const dialog = this.shadowRoot!.querySelector("dialog");
+
     if (dialog) dialog.showModal();
-    
-    this.setAttribute('open', 'true');
+
+    this.setAttribute("open", "true");
   }
 
   close() {
-    const dialog = this.shadowRoot!.querySelector('dialog');
-    
+    const dialog = this.shadowRoot!.querySelector("dialog");
+
     if (dialog) dialog.close();
-    
-    this.removeAttribute('open');
+
+    this.removeAttribute("open");
   }
 
   render() {
-    const isOpen = this.hasAttribute('open');
-    const title = this.getAttribute('title') || 'Título da modal';
-    const message = this.getAttribute('message') || 'Mensagem da modal.';
-    const color = this.getAttribute('color');
+    const isOpen = this.hasAttribute("open");
+    const title = this.getAttribute("title") || "Título da modal";
+    const message = this.getAttribute("message") || "Mensagem da modal.";
+    const color = this.getAttribute("color");
 
     this.shadowRoot!.innerHTML = `
       <style>
@@ -128,7 +127,7 @@ class UIModal extends HTMLElement {
 
       </style>
 
-      <dialog ${isOpen ? 'open' : ''}>
+      <dialog ${isOpen ? "open" : ""}>
       <div class="modal-header">
         <h2>${title}</h2>
         
@@ -149,6 +148,6 @@ class UIModal extends HTMLElement {
   }
 }
 
-customElements.define('ui-modal', UIModal);
+customElements.define("ui-modal", UIModal);
 
 export default UIModal;
