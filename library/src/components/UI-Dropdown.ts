@@ -1,26 +1,21 @@
 class UIDropdown extends HTMLElement {
   static observedAttributes = ['label', 'options', 'selected', 'border-color', 'disabled'];
 
-  private theme = {
-    primary: 'rgb(20, 197, 109)',
-    secondary: 'rgb(100, 122, 152)',
-    danger: 'rgb(255, 39, 89)',
-  };
-
   constructor() {
     super();
+
     this.attachShadow({ mode: 'open' });
+
     this.render();
   }
 
-  connectedCallback() {
-    this.shadowRoot?.querySelector('select')?.addEventListener('change', (event) => {
-      const selectedValue = (event.target as HTMLSelectElement).value;
-      
-      this.dispatchEvent(new CustomEvent('change', {
-        detail: { value: selectedValue },
+  addListener() {
+    const select = this.shadowRoot?.querySelector('select');
+
+    select?.addEventListener('change', (event) => {      
+      this.dispatchEvent(new CustomEvent('dropdown-change', {
         bubbles: true,
-        composed: true
+        detail: { value: (event.target as HTMLSelectElement).value },
       }));
     });
   }
@@ -33,7 +28,7 @@ class UIDropdown extends HTMLElement {
     const label = this.getAttribute('label') || 'Select an option';
     const options = JSON.parse(this.getAttribute('options') || '[]');
     const selected = this.getAttribute('selected') || '';
-    const borderColor = this.theme[this.getAttribute('border-color') as keyof typeof this.theme] || this.theme.primary;
+    const borderColor = this.getAttribute('border-color');
     const disabled = this.getAttribute('disabled') === 'true';
   
     this.shadowRoot!.innerHTML = `
@@ -49,7 +44,7 @@ class UIDropdown extends HTMLElement {
           display: flex;
           flex-direction: column;
           gap: 6px;
-          max-width: 600px;
+          max-width: fit-content;
         }
   
         label {
@@ -122,6 +117,8 @@ class UIDropdown extends HTMLElement {
         </select>
       </div>
     `;
+
+    this.addListener();
   }    
 }
 

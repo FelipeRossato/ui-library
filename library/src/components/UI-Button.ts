@@ -1,30 +1,21 @@
 class UIButton extends HTMLElement {
   static observedAttributes = ['icon', 'label', 'color'];
 
-  private theme = {
-    primary: 'rgb(20, 197, 109)',
-    secondary: 'rgb(100, 122, 152)',
-    danger: 'rgb(255, 39, 89)',
-  };
-
   constructor() {
     super();
+    
     this.attachShadow({ mode: 'open' });
+    
     this.preloadFont().then(() => {
-      this.render();
-      
-      this.addListener();
+      this.render();      
     });
   }
 
   addListener() {
     const button = this.shadowRoot?.querySelector('button');
     
-    button?.addEventListener('click', (event) => {
-      const selectedValue = (event.target as HTMLButtonElement).innerText;
-      
-      this.dispatchEvent(new CustomEvent('custom-click', {
-        detail: { value: selectedValue },
+    button?.addEventListener('click', () => {      
+      this.dispatchEvent(new CustomEvent('button-click', {
         bubbles: true,
         composed: true
       }));
@@ -53,16 +44,14 @@ class UIButton extends HTMLElement {
 
   render() {
     const icon = this.getAttribute('icon') || 'add';
-    const label = this.getAttribute('label') || 'Button';
-    const color = this.theme[this.getAttribute('color') as keyof typeof this.theme] || this.theme.primary;
+    const label = this.getAttribute('label') || 'Adicionar';
+    const color = this.getAttribute('color');
 
     this.shadowRoot!.innerHTML = `
       <style>
         * {
           box-sizing: border-box;
           font-family: 'Poppins', sans-serif;
-          margin: 0;
-          padding: 0;
         }
         
         button {
@@ -77,7 +66,7 @@ class UIButton extends HTMLElement {
           font-size: 14px;
           font-weight: 600;
           gap: 6px;
-          padding: 7px 20px;
+          padding: 7px 14px;
           position: relative;
           text-decoration: none;
           transition: all 0.25s ease;
@@ -85,7 +74,7 @@ class UIButton extends HTMLElement {
           width: fit-content;
 
           &:hover:enabled {
-            filter: brightness(120%);
+            transform: scale(1.05);
           }
         }
 
@@ -101,6 +90,8 @@ class UIButton extends HTMLElement {
         <span>${label}</span>
       </button>
     `;
+
+    this.addListener();
   }
 }
 

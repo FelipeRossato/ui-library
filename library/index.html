@@ -12,19 +12,48 @@
 <body>
   <h1>UI Components Library</h1>
 
-  <UI-Button icon="add" label="Adicionar" color="primary" /></UI-Button>
+  <UI-Button icon="add" label="Adicionar" color="rgb(100, 122, 152)" />
+  </UI-Button>
 
   <br />
 
-  <UI-InputField label="Nome completo:" placeholder="Fulano de tal" type="text"
-    border-color="secondary" /></UI-InputField>
+  <UI-InputField disabled="false" value="Senha123@" type="type" label="Nome:" placeholder="Digite seu nome aqui."
+    border-color="rgb(100, 122, 152)">
+  </UI-InputField>
 
   <br />
 
-  <UI-Dropdown label="Choose a color" options='["Red", "Green", "Blue", "Yellow"]' selected="Green"
-    border-color="secondary" disabled="false"></UI-Dropdown>
+  <UI-Dropdown selected="Brasil" disabled="true" label="País:" options='["Brasil", "Argentina" , "Chile" ]'
+    border-color="rgb(100, 122, 152)">
+  </UI-Dropdown>
 
-  <script type="module" src="/src/main.ts"></script>
+  <br />
+
+  <UI-Modal color="rgb(100, 122, 152)" title="Salvar mudanças?"
+    message="Depois de salvar, as mudanças não poderão ser desfeitas." open="true">
+  </UI-Modal>
+
+  <script type="module">
+    import '/src/components/UI-Button.ts'
+
+    // document.addEventListener('button-click', (event) => {
+    //   console.log('button-click', event)
+    // })
+
+    import '/src/components/UI-InputField.ts'
+
+    // document.addEventListener('inputfield-changee', (event) => {
+    //   console.log('inputfield-change', event.detail.value)
+    // })
+
+    import '/src/components/UI-Dropdown.ts'
+
+    // document.addEventListener('dropdown-change', (event) => {
+    //   console.log('dropdown-change', event.detail.value)
+    // })
+
+    import '/src/components/UI-Modal.ts'
+  </script>
 </body>
 
 </html>

@@ -1,25 +1,25 @@
 class UIInputField extends HTMLElement {
   static observedAttributes = ['label', 'placeholder', 'value', 'type', 'border-color', 'disabled'];
 
-  private theme = {
-    primary: 'rgb(20, 197, 109)',
-    secondary: 'rgb(100, 122, 152)',
-    danger: 'rgb(255, 39, 89)',
-  };
-
   constructor() {
     super();
+    
     this.attachShadow({ mode: 'open' });
+    
     this.render();
   }
 
-  connectedCallback() {
-    this.shadowRoot?.querySelector('input')?.addEventListener('input', (event) => {
-      const inputEvent = new CustomEvent('custom-input', {
-        detail: { value: (event.target as HTMLInputElement).value }
-      });
-      this.dispatchEvent(inputEvent);
-    });
+  addListener() {
+    const input = this.shadowRoot?.querySelector('input');
+
+    input?.addEventListener('input', () => {
+      this.dispatchEvent(new CustomEvent('inputfield-change', {
+        bubbles: true,
+        detail: {
+          value: input?.value
+        }
+      }));
+    })
   }
 
   attributeChangedCallback() {
@@ -30,7 +30,7 @@ class UIInputField extends HTMLElement {
     const placeholder = this.getAttribute('placeholder') || 'Enter text';
     const value = this.getAttribute('value') || '';
     const type = this.getAttribute('type') || 'text';
-    const borderColor = this.theme[this.getAttribute('border-color') as keyof typeof this.theme] || this.theme.primary;
+    const borderColor = this.getAttribute('border-color');
     const disabled = this.getAttribute('disabled') === 'true';
     const label = this.getAttribute('label') || 'Input Field';
 
@@ -47,7 +47,7 @@ class UIInputField extends HTMLElement {
           display: flex;
           flex-direction: column;
           gap: 6px;
-          max-width: 600px;
+          width: fit-content;
         }
 
         label {
@@ -62,7 +62,7 @@ class UIInputField extends HTMLElement {
           font-size: 16px;
           max-width: 600px;
           padding: 12px;
-          width: 100%;
+          width: fit-content;
           transition: all 0.3s ease-in-out;
         }
 
@@ -89,6 +89,8 @@ class UIInputField extends HTMLElement {
         <input id="input-field" type="${type}" placeholder="${placeholder}" value="${value}" ${disabled ? 'disabled' : ''} />
       </div>
     `;
+
+    this.addListener();
   }
 }
 

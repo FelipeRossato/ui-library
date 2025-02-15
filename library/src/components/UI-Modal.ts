@@ -1,31 +1,26 @@
 class UIModal extends HTMLElement {
-  static observedAttributes = ['open', 'title', 'message', 'theme'];
-
-  private theme = {
-    primary: 'rgb(20, 197, 109)',
-    secondary: 'rgb(100, 122, 152)',
-    danger: 'rgb(255, 39, 89)',
-  };
+  static observedAttributes = ['open', 'title', 'message', 'color'];
 
   constructor() {
     super();
+
     this.attachShadow({ mode: 'open' });
+
     this.render();
   }
 
-  addListeners() {
-    const dialog = this.shadowRoot!.querySelector('dialog');
-    const closeBtns = this.shadowRoot!.querySelectorAll('.close-btn');
-  
-    closeBtns.forEach((btn) => {      
-      btn.addEventListener('click', () => {
-        this.close();
-      });
+  addListener() {
+    const closeButton = this.shadowRoot!.querySelector('.close-button');
+    const confirmButton = this.shadowRoot!.querySelector('.confirm-button');
+
+    closeButton?.addEventListener('click', () => {
+      this.close();
     });
-  
-    dialog?.addEventListener('click', (event) => {
-      if (event.target === dialog) this.close();
+
+    confirmButton?.addEventListener('click', () => {
+      this.close();
     });
+
   }
 
   attributeChangedCallback() {
@@ -34,7 +29,9 @@ class UIModal extends HTMLElement {
 
   open() {
     const dialog = this.shadowRoot!.querySelector('dialog');
+    
     if (dialog) dialog.showModal();
+    
     this.setAttribute('open', 'true');
   }
 
@@ -48,93 +45,107 @@ class UIModal extends HTMLElement {
 
   render() {
     const isOpen = this.hasAttribute('open');
-    const title = this.getAttribute('title') || 'Modal Title';
-    const message = this.getAttribute('message') || 'This is a modal message.';
-    const themeColor = this.theme[this.getAttribute('theme') as keyof typeof this.theme] || this.theme.primary;
+    const title = this.getAttribute('title') || 'Título da modal';
+    const message = this.getAttribute('message') || 'Mensagem da modal.';
+    const color = this.getAttribute('color');
 
     this.shadowRoot!.innerHTML = `
       <style>
-        * {
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-          margin: 0;
-          padding: 0;
-        }
+      * {
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
 
-        dialog {
-          width: 400px;
-          border: none;
-          border-radius: 12px;
-          padding: 20px;
-          background: white;
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-          opacity: 0;
-          transform: translateY(-20px);
-          transition: opacity 0.3s ease, transform 0.3s ease;
-          z-index: 1000;
-        }
+      dialog {
+        background: white;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        padding: 20px;
+        transform: translate(-50%, -50%) scale(0.8);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        width: 400px;
+        z-index: 1000;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+      }
 
-        dialog[open] {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      dialog[open] {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
 
-        .modal-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-          border-bottom: 1px solid #ddd;
-          padding-bottom: 10px;
-        }
+      .modal-header {
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+      }
 
-        .modal-header h2 {
-          font-size: 18px;
-          color: ${themeColor};
-        }
+      .modal-header h2 {
+        font-size: 16px;
+      }
 
-        .modal-body {
-          font-size: 14px;
-          margin-bottom: 16px;
-        }
+      .modal-body {
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
 
-        .modal-footer {
-          display: flex;
-          justify-content: flex-end;
-          gap: 10px;
-        }
+      .modal-footer {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
 
-        .close-btn {
-          background: ${themeColor};
-          color: white;
-          border: none;
-          border-radius: 8px;
-          padding: 8px 16px;
-          cursor: pointer;
-          transition: background 0.3s;
-        }
+      .close-button {
+        cursor: pointer;
+        font-size: 12px;
+        color: gray;
+        transition: all 0.3s;
 
-        .close-btn:hover {
-          filter: brightness(120%);
+        &:hover {
+        color: black;
         }
+      }
+
+      .confirm-button {
+        background: ${color};
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 12px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .confirm-button:hover {
+        filter: brightness(120%);
+      }
 
       </style>
 
       <dialog ${isOpen ? 'open' : ''}>
-        <div class="modal-header">
-          <h2>${title}</h2>
-          <button class="close-btn">X</button>
-        </div>
-        <div class="modal-body">
-          <p>${message}</p>
-        </div>
-        <div class="modal-footer">
-          <button class="close-btn">Close</button>
-        </div>
+      <div class="modal-header">
+        <h2>${title}</h2>
+        
+        <span class="close-button">x</span>
+      </div>
+
+      <div class="modal-body">
+        <p>${message}</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="confirm-button">Confirmar</button>
+      </div>
       </dialog>
     `;
 
-    this.addListeners();
+    this.addListener();
   }
 }
 
