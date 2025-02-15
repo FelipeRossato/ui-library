@@ -88,3 +88,5 @@ class UICard extends HTMLElement {
 }
 
 customElements.define("ui-card", UICard);
+
+export default UICard;
