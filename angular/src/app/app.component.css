@@ -1,0 +1,30 @@
+.demo-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+}
+
+.demo-header {
+  text-align: center;
+  color: rgb(100, 122, 152);
+  margin-bottom: 20px;
+}
+
+.button-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-container {
+  margin: 30px 0;
+}

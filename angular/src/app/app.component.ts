@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +6,13 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppComponent {
-  title = 'angular';
+
+export class AppComponent implements AfterViewInit {
+  @ViewChild('modal', { static: false }) modal!: ElementRef;
+
+  ngAfterViewInit() {}
+
+  openModal() {
+    this.modal.nativeElement.open();
+  }
 }
