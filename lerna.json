@@ -2,8 +2,7 @@
   "packages": [
     "angular",
     "react",
-    "vue",
-    "library"
+    "vue"
   ],
   "version": "0.0.0",
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
