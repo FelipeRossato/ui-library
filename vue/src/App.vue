@@ -41,8 +41,7 @@
       color="rgb(100, 122, 152)"
       title="Salvar mudanças?"
       message="Depois de salvar, as mudanças não poderão ser desfeitas."
-    >
-    </UI-Modal>
+    />
   </div>
 </template>
 
