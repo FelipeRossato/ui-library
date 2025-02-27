@@ -1,7 +1,7 @@
 import "./UI-Card";
 
 export default {
-  title: "Components/UICard",
+  title: "Components/UI-Card",
   tags: ["autodocs"],
   render: (args) => {
     const card = document.createElement("ui-card");
@@ -40,14 +40,16 @@ export const Default = {
   },
 };
 
-export const Custom = {
+export const Example = {
   args: {
-    image: "https://via.placeholder.com/300/ff5722/ffffff",
-    title: "Custom Card",
+    image:
+      "https://www.bnews.com.br/media/_versions/fevereiro_2025/byd_estuda_iniciar_producao_de_baterias_para_carros_eletricos_na_bahia_foto_bnews_widelg.jpg",
+    title:
+      "BYD estuda iniciar produção de baterias para carros elétricos na Bahia",
     description:
-      "A custom-styled card with a different background and text colors.",
-    color: "#ff5722",
-    "title-color": "white",
-    "description-color": "lightgray",
+      "Com a nova fábrica, a BYD pretende produzir baterias de fosfato de ferro-lítio, diferenciando-se do mercado atual.",
+    color: "rgb(31 37 44)",
+    "title-color": "#ADBAC7",
+    "description-color": "#D2D9E0",
   },
 };

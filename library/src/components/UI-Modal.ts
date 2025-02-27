@@ -1,5 +1,5 @@
 class UIModal extends HTMLElement {
-  static observedAttributes = ["open", "title", "message", "color"];
+  static observedAttributes = ["open", "title", "message", "color", "button"];
 
   constructor() {
     super();
@@ -47,6 +47,7 @@ class UIModal extends HTMLElement {
     const title = this.getAttribute("title") || "Título da modal";
     const message = this.getAttribute("message") || "Mensagem da modal.";
     const color = this.getAttribute("color");
+    const button = this.getAttribute("button") || "Confirmar";
 
     this.shadowRoot!.innerHTML = `
       <style>
@@ -139,7 +140,7 @@ class UIModal extends HTMLElement {
       </div>
 
       <div class="modal-footer">
-        <button class="confirm-button">Confirmar</button>
+        <button class="confirm-button">${button}</button>
       </div>
       </dialog>
     `;

@@ -27,7 +27,7 @@ export const Default = {
   },
 };
 
-export const Custom = {
+export const Example = {
   args: {
     icon: "edit",
     label: "Editar",
