@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'React + WebComponents Demo',
+};
+
 export default function RootLayout({
   children,
 }: {
