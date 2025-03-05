@@ -1,7 +1,7 @@
 {
   "name": "@felipe-rossato/ui-library",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "start": "vite --port 3000",
@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "release": "npm version patch && npm run build && npm publish --access public"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
@@ -35,7 +36,8 @@
     "vite-plugin-dts": "^4.5.0"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "main": "./dist/ui-library.umd.js",
   "module": "./dist/ui-library.es.js",
