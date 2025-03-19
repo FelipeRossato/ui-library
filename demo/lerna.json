@@ -1,7 +1,10 @@
 {
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "0.0.0",
   "packages": [
-    "demo/*"
+    "angular",
+    "react",
+    "vue"
   ],
-  "version": "independent",
   "npmClient": "npm"
 }
