@@ -1,86 +1,86 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite</title>
-  </head>
 
-  <body>
-    <h1>UI Components Library</h1>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI-Library</title>
+  <style>
+    .demo-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+    }
 
-    <UI-Button icon="add" label="Adicionar" color="rgb(100, 122, 152)">
-    </UI-Button>
+    .demo-header {
+      text-align: center;
+      color: rgb(100, 122, 152);
+      margin-bottom: 20px;
+    }
 
-    <br />
+    .button-container {
+      margin: 20px 0;
+      text-align: center;
+    }
 
-    <UI-InputField
-      disabled="false"
-      value="Senha123@"
-      type="type"
-      label="Nome:"
-      placeholder="Digite seu nome aqui."
-      border-color="rgb(100, 122, 152)"
-    >
-    </UI-InputField>
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-    <br />
+    .card-container {
+      margin: 30px 0;
+    }
+  </style>
+</head>
 
-    <UI-Dropdown
-      selected="Brasil"
-      disabled="true"
-      label="País:"
-      options='["Brasil", "Argentina" , "Chile" ]'
-      border-color="rgb(100, 122, 152)"
-    >
-    </UI-Dropdown>
+<body style="background-color: whitesmoke;">
+  <div class="demo-container">
+    <h1 class="demo-header">WebComponents Demo</h1>
 
-    <br />
+    <div class="button-container">
+      <UI-Button icon="add" label="Abrir modal" color="rgb(100, 122, 152)" />
+    </div>
 
-    <UI-Modal
-      color="rgb(100, 122, 152)"
-      title="Salvar mudanças?"
-      message="Depois de salvar, as mudanças não poderão ser desfeitas."
-      open="true"
-    >
-    </UI-Modal>
+    <div class="form-container">
+      <UI-InputField disabled="false" value="Fulano de tal" type="text" label="Nome:"
+        placeholder="Digite seu nome aqui." border-color="rgb(100, 122, 152)" />
 
-    <br />
+      <UI-Dropdown selected="Brasil" disabled="false" label="País:" options='["Brasil", "Argentina", "Chile"]'
+        border-color="rgb(100, 122, 152)" />
+    </div>
 
-    <UI-Card
-      image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      title="Tênis Nike Fit 2.0"
-      color="white"
-      title-color="black"
-      description-color="black"
-      description="Esse tênis é perfeito para você que gosta de correr. Ele tem um design moderno e é super confortável."
-    >
-    </UI-Card>
+    <div class="card-container">
+      <UI-Card
+        image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        title="Tênis Nike Fit 2.0" color="white" title-color="black" description-color="black"
+        description="Esse tênis é perfeito para você que gosta de correr. Ele tem um design moderno e é super confortável." />
+    </div>
 
-    <script type="module">
-      import "/src/components/UI-Button.ts";
+    <UI-Modal id="modal" color="rgb(100, 122, 152)" title="Salvar mudanças?"
+      message="Depois de salvar, as mudanças não poderão ser desfeitas." />
+  </div>
 
-      // document.addEventListener('button-click', (event) => {
-      //   console.log('button-click', event)
-      // })
+  <script type="module">
+    import "/src/components/UI-Button.ts";
+    import "/src/components/UI-InputField.ts";
+    import "/src/components/UI-Dropdown.ts";
+    import "/src/components/UI-Modal.ts";
+    import "/src/components/UI-Card.ts";
 
-      import "/src/components/UI-InputField.ts";
+    document.addEventListener('button-click', (event) => {
+      const modal = document.querySelector('#modal');
 
-      // document.addEventListener('inputfield-changee', (event) => {
-      //   console.log('inputfield-change', event.detail.value)
-      // })
+      modal.open();
+    })
+  </script>
+</body>
 
-      import "/src/components/UI-Dropdown.ts";
-
-      // document.addEventListener('dropdown-change', (event) => {
-      //   console.log('dropdown-change', event.detail.value)
-      // })
-
-      import "/src/components/UI-Modal.ts";
-
-      import "/src/components/UI-Card.ts";
-    </script>
-  </body>
 </html>

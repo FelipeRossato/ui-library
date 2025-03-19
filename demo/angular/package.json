@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 3002",
+    "start": "ng serve --port 3003",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -20,9 +20,9 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@felipe-rossato/ui-library": "^1.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "ui-library": "file:../library/ui-library-1.0.0.tgz",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@
 
 "use client";
 
-import "ui-library";
+import "@felipe-rossato/ui-library";
 
 import "./page.css";
 

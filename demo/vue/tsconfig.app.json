@@ -6,7 +6,7 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "ui-library": ["./node_modules/ui-library"]
+      "@felipe-rossato/ui-library": ["./node_modules/@felipe-rossato/ui-library"]
     }
   }
 }

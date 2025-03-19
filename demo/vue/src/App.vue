@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { UIButton, UIInputField, UIDropdown, UIModal, UICard } from 'ui-library'
+import { UIButton, UIInputField, UIDropdown, UIModal, UICard } from '@felipe-rossato/ui-library'
 
 export default defineComponent({
   components: {

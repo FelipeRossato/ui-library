@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-declare module 'ui-library' {
+declare module '@felipe-rossato/ui-library' {
   export const UIButton: any;
   export const UIInputField: any;
   export const UIDropdown: any;

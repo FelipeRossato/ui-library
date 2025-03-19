@@ -1,4 +1,4 @@
-import { UIButton, UIInputField, UIDropdown, UIModal, UICard } from 'ui-library';
+import { UIButton, UIInputField, UIDropdown, UIModal, UICard } from '@felipe-rossato/ui-library';
 
 export function registerUILibrary() {
   const components = [

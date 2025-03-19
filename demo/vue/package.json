@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vite --port 3001",
+    "start": "vite --port 3002",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "ui-library": "file:../library/ui-library-1.0.0.tgz",
+    "@felipe-rossato/ui-library": "^1.0.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
