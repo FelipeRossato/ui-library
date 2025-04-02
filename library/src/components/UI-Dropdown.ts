@@ -15,19 +15,6 @@ class UIDropdown extends HTMLElement {
     this.render();
   }
 
-  addListener() {
-    const select = this.shadowRoot?.querySelector("select");
-
-    select?.addEventListener("change", (event) => {
-      this.dispatchEvent(
-        new CustomEvent("dropdown-change", {
-          bubbles: true,
-          detail: { value: (event.target as HTMLSelectElement).value },
-        }),
-      );
-    });
-  }
-
   attributeChangedCallback() {
     this.render();
   }
@@ -125,8 +112,6 @@ class UIDropdown extends HTMLElement {
         </select>
       </div>
     `;
-
-    this.addListener();
   }
 }
 

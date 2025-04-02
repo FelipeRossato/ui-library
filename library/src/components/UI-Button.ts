@@ -11,19 +11,6 @@ class UIButton extends HTMLElement {
     });
   }
 
-  addListener() {
-    const button = this.shadowRoot?.querySelector("button");
-
-    button?.addEventListener("click", () => {
-      this.dispatchEvent(
-        new CustomEvent("button-click", {
-          bubbles: true,
-          composed: true,
-        }),
-      );
-    });
-  }
-
   attributeChangedCallback() {
     this.render();
   }
@@ -95,8 +82,6 @@ class UIButton extends HTMLElement {
         <span>${label}</span>
       </button>
     `;
-
-    this.addListener();
   }
 }
 

@@ -129,19 +129,19 @@ class UIModal extends HTMLElement {
       </style>
 
       <dialog ${isOpen ? "open" : ""}>
-      <div class="modal-header">
-        <h2>${title}</h2>
-        
-        <span class="close-button">x</span>
-      </div>
+        <div class="modal-header">
+          <h2>${title}</h2>
+          
+          <span class="close-button">x</span>
+        </div>
 
-      <div class="modal-body">
-        <p>${message}</p>
-      </div>
+        <div class="modal-body">
+          <p>${message}</p>
+        </div>
 
-      <div class="modal-footer">
-        <button class="confirm-button">${button}</button>
-      </div>
+        <div class="modal-footer">
+          <button class="confirm-button">${button}</button>
+        </div>
       </dialog>
     `;
 

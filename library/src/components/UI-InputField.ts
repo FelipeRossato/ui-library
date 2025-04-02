@@ -16,21 +16,6 @@ class UIInputField extends HTMLElement {
     this.render();
   }
 
-  addListener() {
-    const input = this.shadowRoot?.querySelector("input");
-
-    input?.addEventListener("input", () => {
-      this.dispatchEvent(
-        new CustomEvent("inputfield-change", {
-          bubbles: true,
-          detail: {
-            value: input?.value,
-          },
-        }),
-      );
-    });
-  }
-
   attributeChangedCallback() {
     this.render();
   }
@@ -98,8 +83,6 @@ class UIInputField extends HTMLElement {
         <input id="input-field" type="${type}" placeholder="${placeholder}" value="${value}" ${disabled ? "disabled" : ""} />
       </div>
     `;
-
-    this.addListener();
   }
 }
 
