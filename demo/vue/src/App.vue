@@ -76,6 +76,7 @@ export default defineComponent({
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
+  position: relative;
 }
 
 .demo-header {

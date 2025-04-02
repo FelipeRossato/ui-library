@@ -67,7 +67,7 @@ class UIModal extends HTMLElement {
         transition: opacity 0.3s ease, transform 0.3s ease;
         width: 400px;
         z-index: 1000;
-        position: fixed;
+        position: absolute;
         top: 50%;
         left: 50%;
       }

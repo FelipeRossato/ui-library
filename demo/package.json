@@ -7,5 +7,8 @@
   "dependencies": {},
   "devDependencies": {
     "lerna": "^8.2.1"
+  },
+  "scripts": {
+    "update-ui-library": "lerna exec -- npm run update-ui-library"
   }
-}
+} 

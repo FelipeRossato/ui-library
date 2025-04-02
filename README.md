@@ -102,6 +102,12 @@ Agora cada demonstração estará acessível em:
 - **Vue**: [`http://localhost:3002/`](http://localhost:3002/)
 - **Angular**: [`http://localhost:3003/`](http://localhost:3003/)
 
+Para atualizar a biblioteca nas três demonstrações de uma vez, execute:
+
+```bash
+$ npm run update-ui-library
+```
+
 ---
 
 🎉 **Agora você está pronto para explorar a `@felipe-rossato/ui-library`!**

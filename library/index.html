@@ -16,6 +16,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       font-family: 'Poppins', sans-serif;
       background-color: #fff;
+      position: relative;
     }
 
     .demo-header {
@@ -33,7 +34,6 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-top: 30px;
     }
 
     .card-container {
@@ -52,12 +52,10 @@
 
     <div class="form-container">
       <UI-InputField disabled="false" value="Fulano de tal" type="text" label="Nome:"
-        placeholder="Digite seu nome aqui." border-color="rgb(100, 122, 152)" />
-    </div>
+        placeholder="Digite seu nome aqui." border-color="rgb(100, 122, 152)"></UI-InputField>
 
-    <div class="form-container">
       <UI-Dropdown selected="Brasil" disabled="false" label="País:" options='["Brasil", "Argentina", "Chile"]'
-        border-color="rgb(100, 122, 152)" />
+        border-color="rgb(100, 122, 152)"></UI-Dropdown>
     </div>
 
     <div class="card-container">
